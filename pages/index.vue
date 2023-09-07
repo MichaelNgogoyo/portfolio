@@ -1,7 +1,9 @@
 <script setup lang="ts">
 
+import PortfolioLayout from "~/layouts/portfolioLayout.vue";
+
 definePageMeta({
-  layout: "portfolio-layout"
+  layout: false
 })
 
 //fetch data from directus
@@ -11,13 +13,12 @@ definePageMeta({
 // More files...
 
 
-
-
-
-
 </script>
+
 <template>
-  <div>
+
+<portfolio-layout>
+  <div class="w-fit ">
     <div class="justify-center flex ">
     <span class="h-32 w-32 fill-green-400">
     <svg class="text-green-700" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -27,38 +28,39 @@ definePageMeta({
     </span>
     </div>
 
-    <div class="flex justify-center text-8xl font-bold">
+    <div class="flex justify-center text-3xl lg:text-8xl font-bold">
       <span>Code. Eat. Sleep.</span>
     </div>
     <br>
 
-    <div class="flex justify-center text-2xl">
-      <p> I create meaningful solutions for your brand products. <br>
-        Give your customers the best experience possible.
-      </p>
+    <div class="flex px-4 text-center lg:justify-center flex-wrap w-screen text-2xl">
+      I create meaningful solutions for your brand products. <br>
+      Give your customers the best experience possible.
+
     </div>
 
-    <div class="flex justify-center">
-      <button class="flex justify-center rounded-full bg-blue-500 hover:bg-blue-600 py-4 mt-4 px-8 mb-40">
+    <div class="flex justify-center mx-auto ">
+      <button class="flex justify-center rounded-full
+      bg-blue-500 hover:bg-blue-600 py-4 mt-4 px-8 mb-40">
         Explore works
       </button>
     </div>
   </div>
 
   <!--   Div section-->
-  <div class="flex justify-center px-6 gap-x-4 gap-y-6 gap-y-8 mt-8 py-8 grid grid-cols-2">
+<!--  <div class="flex justify-center px-6 gap-x-4 gap-y-6 gap-y-8 mt-8 py-8 grid grid-cols-2">-->
 
     <!--    <div v-for="t in posts">-->
     <!--      <p>{{t.title}}</p>-->
     <!--      <NuxtLink to="/products/${p.id}" >{{ t.name }}</NuxtLink>-->
     <!--      <img class="h-100 w-100 rounded-full" src="/bg-1.jpg" alt="No image">
           <p class="flex justify-center"> Hello section 1</p>-->
-  </div>
+<!--  </div>-->
 
   <!--  </div>-->
 
   <!--  load more works-->
-  <div class="flex justify-center pb-24">
+  <div class="flex  lg:justify-center mx-auto w-fit pb-16 lg:pb-24">
     <button class="bg-white rounded-full px-4 py-4 outline outline-1 uppercase font-bold text-sm ">
       Load more works
     </button>
@@ -80,7 +82,7 @@ definePageMeta({
     </div>
   </div>
 
-  <div class="text-center text-6xl py-12 pl-48 pr-48 font-bold">
+  <div class="  text-center text-4xl lg:text-6xl py-12 lg:pl-48 lg:pr-48 px-4 font-bold">
     <p>Do you have illustration projects? Lets Talk.</p>
   </div>
 
@@ -105,6 +107,7 @@ definePageMeta({
   <div class="flex justify-center mt-8">
     <p class="uppercase ">@ <span class="font-bold">{{ new Date().getFullYear() }}</span> All rights reserved</p>
   </div>
+  </portfolio-layout>
 </template>
 
 

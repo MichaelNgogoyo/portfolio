@@ -1,7 +1,16 @@
-/** @type {import('tailwindcss').Config} */
-// tailwind.config.js
+  /** @type {import('tailwindcss').Config} */
+  import colors from "tailwindcss/colors";
+
+
 module.exports = {
-  purge: [],
+  theme: {
+    extend: {
+      colors: {
+        teal: colors.teal,
+        'warm-gray': colors.warmGray,
+      },
+    },
+  },
   purge: [
     './components/**/*.{vue,js}',
     './layouts/**/*.vue',
@@ -10,12 +19,12 @@ module.exports = {
     './nuxt.config.{js,ts}',
   ],
   darkMode: false, // or 'media' or 'class'
-  theme: {
-    extend: {},
-  },
+
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
 
