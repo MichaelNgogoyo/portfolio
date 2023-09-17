@@ -90,7 +90,7 @@ definePageMeta({
     <i>
 
     </i>
-    <button class="uppercase bg-green-600 rounded-full py-4 px-4 text-sm text-slate-200 font-bold">
+    <nuxt-link to="/contact" class="uppercase bg-green-600 rounded-full py-4 px-4 text-sm text-slate-200 font-bold">
       <span>
         <svg class="w-7 inline-block" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
              viewBox="0 0 512 512"><path d="M60.44 389.17c0 .07 0 .2-.08.38c.03-.12.05-.25.08-.38z"
@@ -101,7 +101,7 @@ definePageMeta({
             fill="currentColor"></path></svg>
       </span>
       Lets talk now
-    </button>
+    </nuxt-link>
   </div>
 
   <div class="flex justify-center mt-8">
