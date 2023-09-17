@@ -24,7 +24,7 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.2
         with:
-          hostname: ftp://apperstarsolutions.com
+          server: apperstarsolutions.com
           username: ${{ secrets.CPANEL_USERNAME }}
           password: ${{ secrets.CPANEL_PASSWORD }}
           server-dir: /home/u168307903/domains/apperstarsolutions.com/public_html/portfolio/
