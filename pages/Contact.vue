@@ -13,20 +13,19 @@
     lg:px-8 lg:max-w-7xl lg:mx-auto lg:py-32 lg:grid lg:grid-cols-2">
       <div class="lg:pr-8">
         <div class="max-w-md mx-auto sm:max-w-lg lg:mx-0">
-          <h2 class="text-3xl font-bold
-           tracking-tight sm:text-4xl">Let's work together</h2>
+          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Let's work together</h2>
           <p class="mt-4 text-lg text-gray-500 sm:mt-3">We’d love to hear from you! Send us a message using the form
             opposite, or email us. We’d love to hear from you! Send us a message using the form opposite, or email
             us.</p>
-          <Toast v-if="toast.show" :title="toast.title" :description="toast.description" :theme="toast.type" />
-          <form action="#" ref="form" method="POST" @submit.prevent="sendMail" class="mt-9
+          <Toast v-if="toast.show" @close="toast.show = false" :title="toast.title" :description="toast.description" :theme="toast.type" />
+          <form @submit.prevent="sendMail" class="mt-9
            grid grid-cols-1 gap-y-6 sm:grid-cols-2
            sm:gap-x-8">
             <div>
               <label for="first-name" class="block text-sm
               font-medium text-gray-700">First name</label>
               <div class="mt-1">
-                <input type="text" name="f_name"
+                <input type="text" name="f_name" v-model="f_name"
                        id="first-name" autocomplete="given-name"
                        class="block border w-full shadow-sm sm:text-sm
                        focus:ring-grape-500 focus:border-grape-500
@@ -37,7 +36,7 @@
               <label for="last-name" class="block text-sm
               font-medium text-gray-700">Last name</label>
               <div class="mt-1">
-                <input type="text" name="l_name"  id="last-name"
+                <input type="text" name="l_name"  id="last-name" v-model="l_name"
                        autocomplete="family-name" class="block border w-full
                         shadow-sm sm:text-sm focus:ring-grape-500
                         focus:border-grape-500 border-gray-300 rounded-md" required/>
@@ -49,7 +48,7 @@
               <label for="email" class="block text-sm
                font-medium text-gray-700">Email</label>
               <div class="mt-1">
-                <input id="email" name="email" type="email"
+                <input id="email" name="email" type="email" v-model="email"
                        autocomplete="email" class="block w-full
                        shadow-sm sm:text-sm focus:ring-grape-500 border
                         focus:border-grape-500 border-gray-300 rounded-md" required/>
@@ -63,7 +62,7 @@
                  text-gray-500">Optional</span>
               </div>
               <div class="mt-1">
-                <input type="text" name="phone" id="phone" required
+                <input type="text" name="phone" id="phone" required v-model="phone"
                        autocomplete="tel" aria-describedby="phone-description"
                        class="block border w-full shadow-sm sm:text-sm
                        focus:ring-gray-500 focus:border-grape-500
@@ -93,7 +92,7 @@
               </div>
               <div class="mt-1">
                 <textarea id="how-can-we-help"
-                          name="message"
+                          name="message" v-model="message"
                           aria-describedby="how-can-we-help-description"
                           rows="4" class="block w-full border shadow-sm sm:text-sm
                           focus:ring-grape-500 focus:border-grape-500 border
@@ -140,8 +139,13 @@
                                     w-full sm:text-sm border-gray-300 rounded-md" />
                           </div>
                         </div>-->
-            <div class="text-right sm:col-span-2">
-              <button type="submit" value="Send" onsubmit="{{}}" class="inline-flex justify-center
+            <div class="text-right sm:col-span-2 flex items-center space-x-2">
+              <button type="reset" class="inline-flex justify-center
+              py-2 px-4 border border-slate-500 shadow-sm text-sm
+              font-medium rounded-md text-slate-600 focus:outline-none focus:ring-2
+              focus:ring-offset-2 focus:ring-grape-500">Cancel
+              </button>
+              <button type="submit" value="Send" class="inline-flex justify-center
               py-2 px-4 border border-transparent shadow-sm text-sm
               font-medium rounded-md text-white bg-indigo-600
               hover:bg-grape-700 focus:outline-none focus:ring-2
@@ -158,7 +162,7 @@
 <script lang="ts">
 
 import emailJs from 'emailjs-com';
-// import {ref} from 'Vue';
+import {ref} from 'vue';
 import Toast from "~/components/Toast.vue";
 
 const Mailer = emailJs
@@ -178,11 +182,11 @@ export default {
     })
 
     //form
-    const f_name: ref(' ')
-    const l_name: ref('')
-    const email: ref('')
-    const phone: ref('')
-    const message: ref('')
+    const f_name = ref(' ')
+    const l_name = ref('')
+    const email = ref('')
+    const phone = ref('')
+    const message = ref('')
     let sending = ref(false)
 
     //reset form
@@ -196,7 +200,7 @@ export default {
 
     //send meail
     /**/const sendMail = () => {
-      Mailer.send("service_7jdyxxj", "template_3r16flj"),{
+      Mailer.send("service_7jdyxxj", "template_3r16flj",{
         to_name: 'Michael',
         from_name:`${f_name.value} ${l_name.value}`,
         phone: phone.value,
@@ -204,7 +208,8 @@ export default {
         email: email.value,
         reply_to: email.value
       }).then((res)=>{
-        if (res.toLowerCase() === 'ok'{
+        console.log('Email sent successfully: ', res)
+        if (res.text.toLowerCase() === 'ok'){
           toast.value.title = 'Message sent successfully!'
           toast.value.description = 'I\'ll be replying to your message shortly. Thank you for reaching out.'
           toast.value.type = 'success'
@@ -212,9 +217,10 @@ export default {
 
           setTimeout(() => {
             toast.value.show = false
-          }, 10000)
+          }, 20000)
         }
       }).catch((error) =>{
+        console.log('Email failed: ', error)
         toast.value.title = 'Error!'
         toast.value.description = 'Am sorry! Something went wrong when sending your message. Please try again later'
         toast.value.type = 'danger'
@@ -222,7 +228,7 @@ export default {
 
         setTimeout(() => {
           toast.value.show = false
-        }, 10000)
+        }, 20000)
       }).finally(() => {
         sending.value = false
         resetForm()
@@ -233,7 +239,7 @@ export default {
     }
 
 
-    return {sendMail, sending, toast, fname, lname, email, phone, message}
+    return {sendMail, sending, toast, f_name, l_name, email, phone, message}
     definePageMeta({
       layout: 'contact-layout'
     })
