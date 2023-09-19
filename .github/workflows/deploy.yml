@@ -28,5 +28,4 @@ jobs:
           username: ${{ secrets.CPANEL_USERNAME }}
           password: ${{ secrets.CPANEL_PASSWORD }}
           server-dir: /portfolio/
-          local-dir: ./nuxt/
           exclude: ".git*"
