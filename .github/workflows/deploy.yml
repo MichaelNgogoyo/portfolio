@@ -27,6 +27,6 @@ jobs:
           server: ftp://apperstarsolutions.com
           username: ${{ secrets.CPANEL_USERNAME }}
           password: ${{ secrets.CPANEL_PASSWORD }}
-          remote-dir: /portfolio/
+          server-dir: /portfolio/
           local-dir: ./dist/
           exclude: ".git*"
