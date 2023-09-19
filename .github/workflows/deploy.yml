@@ -28,4 +28,4 @@ jobs:
           username: ${{ secrets.CPANEL_USERNAME }}
           password: ${{ secrets.CPANEL_PASSWORD }}
           server-dir: /portfolio/
-          exclude: ".git*"
+          exclude: ".gitignore"
