@@ -24,12 +24,8 @@ jobs:
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.1.0
         with:
-          server: ftp.apperstarsolutions.com
+          server: portfolio.mobitechsolutions.co.ke
           username: ${{ secrets.CPANEL_USERNAME }}
           password: ${{ secrets.CPANEL_PASSWORD }}
-          server-dir: /portfolio/
-<<<<<<< HEAD:.github/workflows/cpanel.yml
-          local-dir: ./dist/
-=======
-          exclude: ".gitignore"
->>>>>>> 81cfae69836ebd984edd482cb89493234d3c658f:.github/workflows/deploy.yml
+          server-dir: /portfolio.mobitechsolutions.co.ke/
+

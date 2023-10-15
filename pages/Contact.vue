@@ -17,7 +17,7 @@
           <p class="mt-4 text-lg text-gray-500 sm:mt-3">We’d love to hear from you! Send us a message using the form
             opposite, or email us. We’d love to hear from you! Send us a message using the form opposite, or email
             us.</p>
-          <Toast v-if="toast.show" @close="toast.show = false" :title="toast.title" :description="toast.description" :theme="toast.type" />
+          <Toax`st v-if="toast.show" @close="toast.show = false" :title="toast.title" :description="toast.description" :theme="toast.type" />
           <form @submit.prevent="sendMail" class="mt-9
            grid grid-cols-1 gap-y-6 sm:grid-cols-2
            sm:gap-x-8">
