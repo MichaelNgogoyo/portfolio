@@ -27,5 +27,5 @@ jobs:
           server: portfolio.mobitechsolutions.co.ke
           username: ${{ secrets.CPANEL_USERNAME }}
           password: ${{ secrets.CPANEL_PASSWORD }}
-          server-dir: /portfolio.mobitechsolutions.co.ke/
+          server-dir: /portfolio.mobitechsolutions.co.ke
 
